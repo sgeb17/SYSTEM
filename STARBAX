@@ -1,0 +1,103 @@
+student_name = ["ARA", "NICOLE"]
+print("-------------------WELCOME TO COFFEE SYSTEM-------------------")
+stud_name = input("Enter Costumer name: ")
+student_name.append(stud_name)
+menu = [{"Name": "Espresso", "Price": 40, "Food": "Salad"},
+        {"Name": "Ice Coffee Latte", "Price": 60},
+        {"Name": "Matcha Latte", "Price": 50},
+        {"Name": "Caramel Machiato", "Price": 30},
+        {"Name": "", "Price": 20}]
+import os
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+def display_menu():
+    for item in menu:
+        print(f"{item['Name']} - {item['Price']} ")
+def take_order():
+    order = {}
+    while True:
+        display_menu()
+        item_name = input("Enter your Order or (Checkout/C): ")
+        if item_name.upper() == "C":
+            break
+        item_quantity = int(input("Enter the quantity: "))
+        for item in menu:
+            if item["Name"].upper() == item_name.upper():
+                order[item_name] = {"quantity": item_quantity, "price": item["Price"]}
+                clear_screen()
+                break
+        else:
+            print("Invalid item name. Please try again.")
+        clear_screen()
+    return order
+def calculate_total_price(order):
+    total_price = 0
+    for item in order.values():
+        total_price += item["quantity"] * item["price"]
+    return total_price
+
+def print_order_summary(order, total_price):
+    print("-------------------------------------------------------------------------------")
+    print("|                                    Order Summary                             |")
+    print("|                                                                              |")
+    for item_name, item in order.items():
+        print(f"|    You ordered  {item_name}  with a quantity of {item['quantity']}!                         |")
+        print(f"|                            Total Price {total_price}  !                                |")
+    print("-------------------------------------------------------------------------------")
+def mode_of_payment(range,total_price):
+    print("                               Mode of Payment!                        ")
+    print("a. Cash")
+    print("b. GCash")
+    payment= input("Choose a or b: ")
+    if payment.lower() == "a":
+        cash = float(input("Cash: "))
+        change = float(cash) - float(total_price)
+        print("Change: ",change)
+    if payment.lower() == "b":
+        number = float(input("Enter your Number: "))
+        ans = input("Would you like to receive a Receipt? (Y/N): ")
+        if ans == "Y":
+            email= input("Enter your email: ")
+            print("Successfully Paid!")
+            print(f"Receipt sent @{email}")
+        elif ans == "N":
+            print("Successfully Paid!")
+        else:
+            print("Error!")
+def delivery(order,house):
+    if order == 0:
+        delivered = f"Package {order[0]} is delivered to {house[0]}'s house."
+        return delivered
+    else:
+        delivered = f"Package{order[order-1]} is delivered to {house[house-1]}'s house."
+        return delivered + delivery (order-1,house-1)
+orders = input("Package Number : ")
+orders = orders.split()
+order = len(orders)
+
+houses = input("House :")
+houses = houses.split()
+house = len(houses)
+print("                      HERE'S OUR MENU                         ")
+def main():
+    order = take_order()
+    total_price = calculate_total_price(order)
+    print_order_summary(order, total_price)
+    mode_of_payment(range,total_price)
+
+if _name_ == "_main_":
+    main()
+def bubble_sort(student):
+    n = len(student)-1
+    sorted =  False
+
+    while not sorted:
+        sorted = True
+        for i in range (0,n):
+            if student[i] > student[i +1]:
+                sorted = False
+            student[i],student[i+1]=student[i+1],student[i]
+    return student
+
+sorted_student_name = bubble_sort(student_name)
+print(sorted_student_name)
