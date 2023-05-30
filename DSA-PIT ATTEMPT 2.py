@@ -15,11 +15,11 @@ print("""
 """)
 
 print("                               Rise, Sip & Grind                            ")
-username =[ ]
+users =[{ "username": "sharmaine", "password": 1234}]
 current_user = None
 def login():
      global current_user
-    print("WELCOME ABOARD!")
+print("WELCOME ABOARD!")
 username = input("Enter username: ")
 password = input("Enter password: ")
 
