@@ -15,8 +15,20 @@ print("""
 """)
 
 print("                               Rise, Sip & Grind                            ")
+username =[ ]
+current_user = None
+def login():
+     global current_user
+    print("WELCOME ABOARD!")
+username = input("Enter username: ")
+password = input("Enter password: ")
 
-
+for user in users:
+    if user["username"] == username and user["password"] == password:
+        current_user= user["username"]
+        print("Login Successful")
+    else:
+        print("Invalid")
 
 name = input("May I know your name please? :\t")
 print("\n Hello, " + name + "! Here's our menu: \n")
@@ -29,12 +41,12 @@ def order():
     print("     Hello, " + name + "! Here's our menu:     ")
 
 # Define menu and prices
-menu = {'a': {'name': 'Espresso', 'price': 160},
-        'b': {'name': 'Americano', 'price': 160},
-        'c': {'name': 'Latte', 'price': 120},
-        'd': {'name': 'Mocha', 'price': 140},
-        'e': {'name': 'Cappuccino', 'price': 99},
-        'f': {'name': 'Bagel', 'price': 60}}
+menu = {'a': {'name': 'Espresso', 'price': 160,'supply': 50},
+        'b': {'name': 'Americano', 'price': 160, 'supply': 50},
+        'c': {'name': 'Latte', 'price': 120,'supply': 50},
+        'd': {'name': 'Mocha', 'price': 140, 'supply': 50},
+        'e': {'name': 'Cappuccino', 'price': 99, 'supply': 50},
+        'f': {'name': 'Bagel', 'price': 60, 'supply': 50}}
 
 # Initialize order summary list and orders dictionary
 order_summary = []
